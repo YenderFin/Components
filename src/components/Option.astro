@@ -1,0 +1,21 @@
+---
+import icons from '../content/icons.json';
+import { twMerge } from 'tailwind-merge';
+interface Props {
+	title?: string
+	class?: string
+	iconName?: string
+	iconName2?: string
+}
+const {
+ title, class: className, iconName, iconName2
+}= Astro.props;
+const sectionClass= twMerge('flex rounded',className);
+const iconSvg = iconName ? icons[iconName]: null;
+const iconSvg2 = iconName2 ? icons[iconName2]: null;
+---
+<a href="#" class={sectionClass}>
+	<span class="px-2 flex">{iconSvg && <Fragment set:html={iconSvg} />}</span>
+	{title}
+	<span class="px-2 group-hover:rotate-180 duration-200" > {iconSvg2 && <Fragment set:html={iconSvg2} /> }</span>
+</a>
